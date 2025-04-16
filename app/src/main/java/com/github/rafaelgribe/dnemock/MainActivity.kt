@@ -7,13 +7,19 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -49,7 +55,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Root() {
     Scaffold(
-        containerColor = colorResource(R.color.light_blue), modifier = Modifier.fillMaxSize()
+        containerColor = colorResource(R.color.background_2025), modifier = Modifier.fillMaxSize()
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -75,23 +81,32 @@ fun Root() {
 
             Row(
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
-                modifier = Modifier.padding(top = 40.dp),
+                modifier = Modifier
+                    .padding(top = 40.dp)
+                    .height(IntrinsicSize.Max),
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.profile_picture),
-                    contentDescription = "Profile Picture",
+                Column(
                     modifier = Modifier
-                        .weight(0.5f)
-                        .aspectRatio(0.8f)
-                        .clip(shape = RoundedCornerShape(12.dp))
-                )
+                        .weight(1f)
+                        .fillMaxHeight()
+                        .clip(shape = RoundedCornerShape(8.dp))
+                        .background(color = Color.White)
+                        .padding(4.dp),
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.profile_picture),
+                        contentDescription = "Profile Picture",
+                        modifier = Modifier
+                            .clip(shape = RoundedCornerShape(6.dp))
+                    )
+                }
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
-                        .weight(0.5f)
-                        .clip(shape = RoundedCornerShape(12.dp))
-                        .background(Color.White)
-                        .aspectRatio(0.8f),
+                        .weight(1f)
+                        .fillMaxHeight()
+                        .clip(shape = RoundedCornerShape(8.dp))
+                        .background(Color.White),
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.qr_code),
@@ -99,7 +114,7 @@ fun Root() {
                         modifier = Modifier.padding(12.dp)
                     )
                     Text(
-                        text = "QEJGDB", fontWeight = FontWeight.SemiBold, fontSize = 18.sp
+                        text = "Cod. uso 2025.QEJGDB", fontWeight = FontWeight.SemiBold, fontSize = 12.sp
                     )
                 }
             }
@@ -120,7 +135,7 @@ fun Root() {
                 TextRow(field = "Nível de ensino", value = "Pós Graduação")
                 TextRow(field = "CPF", value = "126.841.246-55")
                 TextRow(field = "Data de Nasc.", value = "08/12/1996")
-                TextRow(field = "Validade", value = "03/2025")
+                TextRow(field = "Validade", value = "03/2026")
             }
 
             Column(
